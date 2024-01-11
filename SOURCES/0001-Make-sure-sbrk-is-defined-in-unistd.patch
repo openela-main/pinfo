@@ -1,0 +1,27 @@
+From b0fdc30500ddd271ec263b5b1c2eacf86ff73461 Mon Sep 17 00:00:00 2001
+From: "bas@zoetekouw.net" <bas@zoetekouw.net>
+Date: Mon, 7 Aug 2017 22:58:43 +0200
+Subject: [PATCH] Make sure sbrk() is defined in unistd
+
+---
+ src/common_includes.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/common_includes.h b/src/common_includes.h
+index a4593d3..fb3148c 100644
+--- a/src/common_includes.h
++++ b/src/common_includes.h
+@@ -22,6 +22,10 @@
+ #ifndef __COMMON_INCLUDES_H
+ #define __COMMON_INCLUDES_H
+ 
++/* make sure unistd.h defines sbrk() */
++#define _DEFAULT_SOURCE 1
++#define _BSD_SOURCE 1
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <strings.h>
+-- 
+2.14.4
+
